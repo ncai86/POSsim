@@ -8,7 +8,6 @@ gem 'rails', '3.2.13'
 gem 'mysql2'
 gem 'faraday'
 gem 'rails_config'
-gem 'faraday'
 gem 'webmock'
 gem 'rabl', ">= 0.7.1"
 gem 'httpclient'
