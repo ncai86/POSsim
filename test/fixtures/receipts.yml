@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  receipt_number: MyString
+  purchase_date_time: MyString
+  good_description: MyString
+  detailed_description: MyText
+  squantity: 1
+  gross_amount: 1.5
+  is_luxury: false
+
+two:
+  receipt_number: MyString
+  purchase_date_time: MyString
+  good_description: MyString
+  detailed_description: MyText
+  squantity: 1
+  gross_amount: 1.5
+  is_luxury: false
