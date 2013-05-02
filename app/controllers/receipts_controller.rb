@@ -34,10 +34,10 @@ class ReceiptsController < ApplicationController
     #logger.info params[:GoodsType].class
     #logger.info request.raw_post
 
-    if goods_type == 1
-      luxury_filter = 1
-    elsif goods_type == 2
+    if goods_type == 1 #standard
       luxury_filter = 0
+    elsif goods_type == 2 #luxury
+      luxury_filter = 1
     end
 
     #logger.info "############{luxury_filter}###########"
