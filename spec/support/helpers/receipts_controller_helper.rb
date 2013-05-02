@@ -1,4 +1,4 @@
-module ReceiptsHelper
+module ReceiptsControllerHelper
   def raw_post(action, params, body)
     @request.env['RAW_POST_DATA'] = body
     response = post(action, params)
