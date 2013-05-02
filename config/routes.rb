@@ -1,5 +1,5 @@
 Possim::Application.routes.draw do
-  get "receipts/get_receipt"
+  post "receipts/get_receipt"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

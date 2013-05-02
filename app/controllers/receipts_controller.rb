@@ -19,19 +19,36 @@ class ReceiptsController < ApplicationController
     #end
 
     #checking if GoodsType is luxury or standard
-    goods_type = params[:GoodsType]
+    #debugger
+    #Checks for Presence of Mandatory data for query
+    receipt_number = params[:ReceiptRequest][:ReceiptNumber] rescue nil
+    goods_type = params[:ReceiptRequest][:GoodsType] rescue nil
+    unless (receipt_number && goods_type) && (receipt_number.class == String && goods_type.class == Fixnum)
+      @error = "System Error: [return code]"
+      render 'error' and return
+    end
 
-    if goods_type == '1'
+    #logger.info "testing123"
+    #logger.info params
+    #logger.info params[:ReceiptRequest][:ReceiptNumber]
+    #logger.info params[:GoodsType].class
+    #logger.info request.raw_post
+
+    if goods_type == 1
       luxury_filter = 1
-    elsif goods_type == '2'
+    elsif goods_type == 2
       luxury_filter = 0
     end
 
-    logger.info "############{luxury_filter}###########"
+    #logger.info "############{luxury_filter}###########"
 
-    @receipt = Receipt.find_by_receipt_number(params[:ReceiptNumber])
+    @receipt = Receipt.find_by_receipt_number(params[:ReceiptRequest][:ReceiptNumber])
+    unless @receipt
+      render 'error' and return
+    end
 
-     #Items Luxury or Standard
+    #Checks receipt presence using data
+    #Items Luxury or Standard
     @purchase_items = luxury_filter.present? ? @receipt.purchase_items.where(:is_luxury => luxury_filter) : @receipt.purchase_items
   end
 end
