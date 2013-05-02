@@ -44,6 +44,7 @@ class ReceiptsController < ApplicationController
 
     @receipt = Receipt.find_by_receipt_number(params[:ReceiptRequest][:ReceiptNumber])
     unless @receipt
+      @error = "No Data: 01"
       render 'error' and return
     end
 
