@@ -27,7 +27,7 @@ class ReceiptsController < ApplicationController
 
     logger.info 'TESTING123123123'
     # unless (receipt_number && goods_type) && (receipt_number.class == String && goods_type.class == Fixnum)
-    unless (receipt_number) && (receipt_number.class == String)
+    unless (receipt_number)|| (receipt_number.class == String)  || (receipt_number.try(:length) != VALID_RECEIPT_CHAR_LENGTH )
       @error = "System Error: [return code]"
       render 'error' and return
     end
