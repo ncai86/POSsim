@@ -14,6 +14,9 @@ child @purchase_items => 'PurchaseItems' do
   node 'GrossAmount' do |p|
     p.gross_amount.to_s
   end
+  node 'VatRate' do |p|
+    p.vate_rate.to_s
+  end
   node 'IsLuxury' do |p|
     p.is_luxury.to_s
   end
