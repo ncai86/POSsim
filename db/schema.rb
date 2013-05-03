@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130426033448) do
+ActiveRecord::Schema.define(:version => 20130503073640) do
 
   create_table "purchase_items", :force => true do |t|
     t.integer  "receipt_id"
@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(:version => 20130426033448) do
     t.boolean  "is_luxury",            :default => false
     t.datetime "created_at",                              :null => false
     t.datetime "updated_at",                              :null => false
+    t.float    "vat_rate"
   end
 
   create_table "receipts", :force => true do |t|
