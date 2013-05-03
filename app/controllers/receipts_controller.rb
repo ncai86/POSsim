@@ -1,5 +1,5 @@
 class ReceiptsController < ApplicationController
-  respond_to :xml, :json
+  respond_to :xml
 
   def get_receipt
     ##check for mandatory data
@@ -21,9 +21,13 @@ class ReceiptsController < ApplicationController
     #checking if GoodsType is luxury or standard
     #debugger
     #Checks for Presence of Mandatory data for query
+    response.headers["Content-Type"] = 'text/xml'
     receipt_number = params[:ReceiptRequest][:ReceiptNumber] rescue nil
-    goods_type = params[:ReceiptRequest][:GoodsType] rescue nil
-    unless (receipt_number && goods_type) && (receipt_number.class == String && goods_type.class == Fixnum)
+    # goods_type = params[:ReceiptRequest][:GoodsType] rescue nil
+
+    logger.info 'TESTING123123123'
+    # unless (receipt_number && goods_type) && (receipt_number.class == String && goods_type.class == Fixnum)
+    unless (receipt_number) && (receipt_number.class == String)
       @error = "System Error: [return code]"
       render 'error' and return
     end
@@ -34,11 +38,11 @@ class ReceiptsController < ApplicationController
     #logger.info params[:GoodsType].class
     #logger.info request.raw_post
 
-    if goods_type == 1 #standard
-      luxury_filter = 0
-    elsif goods_type == 2 #luxury
-      luxury_filter = 1
-    end
+    # if goods_type == 1 #standard
+    #   luxury_filter = 0
+    # elsif goods_type == 2 #luxury
+    #   luxury_filter = 1
+    # end
 
     #logger.info "############{luxury_filter}###########"
 
@@ -50,6 +54,7 @@ class ReceiptsController < ApplicationController
 
     #Checks receipt presence using data
     #Items Luxury or Standard
-    @purchase_items = luxury_filter.present? ? @receipt.purchase_items.where(:is_luxury => luxury_filter) : @receipt.purchase_items
+    # @purchase_items = luxury_filter.present? ? @receipt.purchase_items.where(:is_luxury => luxury_filter) : @receipt.purchase_items
+    @purchase_items = @receipt.purchase_items
   end
 end
