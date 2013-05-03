@@ -8,7 +8,7 @@ describe ReceiptsController do
     {
         :ReceiptRequest =>
             {
-                :ReceiptNumber => '123123',
+                :ReceiptNumber => '1234567891234567891234567890',
                 :GoodsType => 1
             }
     }
@@ -17,7 +17,7 @@ describe ReceiptsController do
   let(:req_path) { "http://example.org/receipts/get_receipt" }
 
   before do
-    @receipt = create(:receipt, :receipt_number => '123123')
+    @receipt = create(:receipt, :receipt_number => '1234567891234567891234567890')
   end
 
   context 'XML POST REQUEST' do
@@ -35,7 +35,6 @@ describe ReceiptsController do
       post_params = {}
       post :get_receipt, post_params.merge(:format => :xml)
       expect(response).to be_success
-      #response.code.should == "200"
       expect(response).to render_template("error")
     end
 
@@ -44,7 +43,6 @@ describe ReceiptsController do
 
       post :get_receipt, post_params.merge(:format => :xml)
       expect(response).to be_success
-      #response.code.should == "200"
       expect(response).to render_template("error")
     end
 
@@ -53,16 +51,23 @@ describe ReceiptsController do
 
       post :get_receipt, post_params.merge(:format => :xml)
       expect(response).to be_success
-      #response.code.should == "200"
       expect(response).to render_template("error")
     end
 
-    it 'renders error template with 01 error code when record does not exist' do
+    it 'renders error template with 01 error code when length is not valid' do
       post_params[:ReceiptRequest][:ReceiptNumber] = post_params[:ReceiptRequest][:ReceiptNumber] + '1'
+      debugger
 
       post :get_receipt, post_params.merge(:format => :xml)
       expect(response).to be_success
-      #response.code.should == "200"
+      expect(response).to render_template("error")
+    end
+
+    it 'renders error template with 01 error code when length is not valid' do
+      post_params[:ReceiptRequest][:ReceiptNumber].chop! << '5'
+
+      post :get_receipt, post_params.merge(:format => :xml)
+      expect(response).to be_success
       expect(response).to render_template("error")
     end
 

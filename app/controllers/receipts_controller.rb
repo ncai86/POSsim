@@ -23,7 +23,8 @@ class ReceiptsController < ApplicationController
     #Checks for Presence of Mandatory data for query
     receipt_number = params[:ReceiptRequest][:ReceiptNumber] rescue nil
     goods_type = params[:ReceiptRequest][:GoodsType] rescue nil
-    unless (receipt_number && goods_type) && (receipt_number.class == String && goods_type.class == Fixnum)
+
+    if (receipt_number == nil || goods_type == nil) || (receipt_number.class != String || goods_type.class != Fixnum) || (receipt_number.try(:length) != VALID_RECEIPT_CHAR_LENGTH )
       @error = "System Error: [return code]"
       render 'error' and return
     end
@@ -41,7 +42,7 @@ class ReceiptsController < ApplicationController
     end
 
     #logger.info "############{luxury_filter}###########"
-
+    debugger
     @receipt = Receipt.find_by_receipt_number(params[:ReceiptRequest][:ReceiptNumber])
     unless @receipt
       @error = "No Data: 01"
