@@ -44,7 +44,6 @@ group :test do
   gem 'capybara', '~> 2.0'
   gem 'database_cleaner', github: "bmabey/database_cleaner"
   gem 'rack-test', '0.6.1'
-  gem 'capybara-webkit', '>= 0.12.0'
   gem 'capybara', '~> 2.0'
   gem 'selenium-webdriver', '>= 2.25.0'
 end
