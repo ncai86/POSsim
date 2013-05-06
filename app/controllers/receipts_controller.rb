@@ -1,6 +1,28 @@
 class ReceiptsController < ApplicationController
   respond_to :xml, :json
 
+  @receipt_length = 28
+
+  #getter
+  def self.receipt_length
+    @receipt_length
+  end
+
+  #setter
+  def self.receipt_length=(value)
+    @receipt_length = value
+  end
+
+
+  def edit_receipt_length
+    logger.info 'showing edit receipt page'
+    @receipt_length
+  end
+
+  def set_receipt_length
+    logger.info 'setting receipt length'
+  end
+
   def get_receipt
     ##check for mandatory data
     # sends bad response if not present
@@ -24,7 +46,7 @@ class ReceiptsController < ApplicationController
     receipt_number = params[:ReceiptRequest][:ReceiptNumber] rescue nil
     goods_type = params[:ReceiptRequest][:GoodsType] rescue nil
 
-    if (receipt_number == nil || goods_type == nil) || (receipt_number.class != String || goods_type.class != Fixnum) || (receipt_number.try(:length) != VALID_RECEIPT_CHAR_LENGTH )
+    if (receipt_number == nil || goods_type == nil) || (receipt_number.class != String || goods_type.class != Fixnum) || (receipt_number.try(:length) != @receipt_length)
       @error = "System Error: [return code]"
       render 'error' and return
     end
