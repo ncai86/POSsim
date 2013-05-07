@@ -89,16 +89,15 @@ class ReceiptsController < ApplicationController
     #Set Receipt Length according to template selected
     @receipt_length = case Receipt.template
       when 'lotte'
-        28
+        Settings.receipt_length.lotte
       when 'testing'
-        0
+        Settings.receipt_length.test
     end
 
     logger.info '###################'
 
     logger.info @receipt_length
     #checking if GoodsType is luxury or standard
-    #debugger
     #Checks for Presence of Mandatory data for query
     receipt_number = params[:ReceiptRequest][:ReceiptNumber] rescue nil
     goods_type = params[:ReceiptRequest][:GoodsType] rescue nil
@@ -107,11 +106,8 @@ class ReceiptsController < ApplicationController
       render 'error' and return
     end
 
-    #logger.info "testing123"
-    #logger.info params
     logger.info params[:ReceiptRequest][:ReceiptNumber]
     logger.info params[:ReceiptRequest][:GoodsType]
-    #logger.info request.raw_post
 
     if goods_type == 1 #standard
       luxury_filter = 0
@@ -119,8 +115,6 @@ class ReceiptsController < ApplicationController
       luxury_filter = 1
     end
 
-    #logger.info "############{luxury_filter}###########"
-    debugger
     @receipt = Receipt.find_by_receipt_number(params[:ReceiptRequest][:ReceiptNumber])
     unless @receipt
       @error = "No Data: 01"
