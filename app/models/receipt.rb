@@ -1,8 +1,9 @@
 class Receipt < ActiveRecord::Base
   has_many :purchase_items, :dependent => :destroy
   attr_accessible :detailed_description, :good_description, :gross_amount, :is_luxury, :purchase_date_time, :receipt_number, :quantity
+  cattr_accessor :template
+  self.template = 'lotte'
 
-#  setter
   def purchase_date_time=(purchase_date_time)
     write_attribute(:purchase_date_time, purchase_date_time.to_datetime.strftime("%FT%T"))
   end
