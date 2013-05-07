@@ -1,0 +1,2 @@
+VALID_RECEIPT_CHAR_LENGTH = 28
+MERCHANTS = ["lotte", 'testing']
