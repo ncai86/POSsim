@@ -1,9 +1,11 @@
 Possim::Application.routes.draw do
-  root :to => "receipts#edit_receipt_length"
+  root :to => "receipts#edit_receipt_template"
 
   post "receipts/get_receipt"
   put "receipts/set_receipt_length"
   get "receipts/edit_receipt_length"
+  put "receipts/set_receipt_template"
+  get "receipts/edit_receipt_template"
 
 
   # The priority is based upon order of creation:

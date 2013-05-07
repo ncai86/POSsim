@@ -1,0 +1,14 @@
+<strong>Current Template: <%= @receipt_template %></strong>
+
+<br/>
+<br/>
+
+<div>
+Change Template to:
+<%= form_tag receipts_set_receipt_template_path, {:method => :put} do %>
+
+<%= select_tag :template, options_for_select(MERCHANTS, @receipt_template) %><br/>
+<%= submit_tag 'Submit', :class => 'btn btn-primary'%>
+
+<% end %>
+</div>
