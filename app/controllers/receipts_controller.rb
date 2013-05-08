@@ -39,7 +39,8 @@ class ReceiptsController < ApplicationController
     #Checks for Presence of Mandatory data for query
     receipt_number = params[:ReceiptRequest][:ReceiptNumber] rescue nil
     goods_type = params[:ReceiptRequest][:GoodsType] rescue nil
-    if (receipt_number == nil || goods_type == nil) || (receipt_number.class != String || goods_type.class != Fixnum) || (receipt_number.try(:length) != @receipt_length)
+    # if (receipt_number == nil || goods_type == nil) || (receipt_number.class != String || goods_type.class != Fixnum) || (receipt_number.try(:length) != @receipt_length)
+    if (receipt_number == nil) || (receipt_number.class != String) || (receipt_number.try(:length) != @receipt_length)
       @error = "System Error: [return code]"
       render 'error' and return
     end
@@ -47,11 +48,11 @@ class ReceiptsController < ApplicationController
     logger.info params[:ReceiptRequest][:ReceiptNumber]
     logger.info params[:ReceiptRequest][:GoodsType]
 
-    if goods_type == 1 #standard
-      luxury_filter = 0
-    elsif goods_type == 2 #luxury
-      luxury_filter = 1
-    end
+    # if goods_type == 1 #standard
+    #   luxury_filter = 0
+    # elsif goods_type == 2 #luxury
+    #   luxury_filter = 1
+    # end
 
     @receipt = Receipt.find_by_receipt_number(params[:ReceiptRequest][:ReceiptNumber])
     unless @receipt
@@ -61,7 +62,8 @@ class ReceiptsController < ApplicationController
 
     #Checks receipt presence using data
     #Items Luxury or Standard
-    @purchase_items = luxury_filter.present? ? @receipt.purchase_items.where(:is_luxury => luxury_filter) : @receipt.purchase_items
+    # @purchase_items = luxury_filter.present? ? @receipt.purchase_items.where(:is_luxury => luxury_filter) : @receipt.purchase_items
+    @purchase_items = @receipt.purchase_items
     render "#{Receipt.template}_get_receipt"
   end
 end
