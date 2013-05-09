@@ -22,15 +22,6 @@ class ReceiptsController < ApplicationController
         @error = "System Error: [return code]"
       end
 
-<<<<<<< HEAD
-    logger.info @receipt_length
-    #checking if GoodsType is luxury or standard
-    #Checks for Presence of Mandatory data for query
-    receipt_number = params[:ReceiptRequest][:ReceiptNumber] rescue nil
-    goods_type = params[:ReceiptRequest][:GoodsType] rescue nil
-    # if (receipt_number == nil || goods_type == nil) || (receipt_number.class != String || goods_type.class != Fixnum) || (receipt_number.try(:length) != @receipt_length)
-    if (receipt_number == nil) || (receipt_number.class != String) || (receipt_number.try(:length) != @receipt_length)
-=======
       #  Check params name == valid_parameters name
       #  Check params class == valid_parameters class
       #  Check params length == valid_parameters length if length is present
@@ -42,7 +33,6 @@ class ReceiptsController < ApplicationController
         end
       end
     else
->>>>>>> development
       @error = "System Error: [return code]"
     end
 
@@ -56,13 +46,6 @@ class ReceiptsController < ApplicationController
     #    Settings.receipt_length.test
     #end
 
-<<<<<<< HEAD
-    # if goods_type == 1 #standard
-    #   luxury_filter = 0
-    # elsif goods_type == 2 #luxury
-    #   luxury_filter = 1
-    # end
-=======
     #checking if GoodsType is luxury or standard
     #Checks for Presence of Mandatory data for query
     #receipt_number = params[:ReceiptRequest][:ReceiptNumber] rescue nil
@@ -81,7 +64,6 @@ class ReceiptsController < ApplicationController
         luxury_filter = 1
       end
     end
->>>>>>> development
 
     @receipt = Receipt.find_by_receipt_number(@receipt_number)
     unless @receipt
@@ -91,11 +73,7 @@ class ReceiptsController < ApplicationController
 
     #Checks receipt presence using data
     #Items Luxury or Standard
-<<<<<<< HEAD
-    # @purchase_items = luxury_filter.present? ? @receipt.purchase_items.where(:is_luxury => luxury_filter) : @receipt.purchase_items
-    @purchase_items = @receipt.purchase_items
-    render "#{Receipt.template}_get_receipt"
-=======
+
     @purchase_items = luxury_filter.present? ? @receipt.purchase_items.where(:is_luxury => luxury_filter) : @receipt.purchase_items
   end
 
@@ -106,6 +84,5 @@ class ReceiptsController < ApplicationController
     @receipt_request.each do |key, value|
       instance_variable_set "@#{key.underscore}", value
     end if @receipt_request.present?
->>>>>>> development
   end
 end
