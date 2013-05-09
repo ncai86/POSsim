@@ -1,17 +1,17 @@
 class ReceiptsController < ApplicationController
   respond_to :xml, :json
 
-  def edit_receipt_template
-    @receipt_template = Receipt.template
-    logger.info @receipt_template
-  end
-
-  def set_receipt_template
-    Receipt.template = params[:template]
-
-    flash[:notice] = "Template Updated"
-    redirect_to receipts_edit_receipt_template_path
-  end
+  #def edit_receipt_template
+  #  @receipt_template = Receipt.template
+  #  logger.info @receipt_template
+  #end
+  #
+  #def set_receipt_template
+  #  Receipt.template = params[:template]
+  #
+  #  flash[:notice] = "Template Updated"
+  #  redirect_to receipts_edit_receipt_template_path
+  #end
 
   def get_receipt
     set_parameter_variables
@@ -65,24 +65,31 @@ class ReceiptsController < ApplicationController
       end
     end
 
-    @receipt = Receipt.find_by_receipt_number(@receipt_number)
-    unless @receipt
+    #Checks purchase_items presence using data
+    #Items Luxury or Standard
+    @purchase_items = eval(QUERY_STRING)
+    unless @purchase_items
       @error = "No Data: 01"
       render 'error' and return
     end
 
+<<<<<<< HEAD
     #Checks receipt presence using data
     #Items Luxury or Standard
 
     @purchase_items = luxury_filter.present? ? @receipt.purchase_items.where(:is_luxury => luxury_filter) : @receipt.purchase_items
+=======
+
+>>>>>>> development
   end
 
   private
 
   def set_parameter_variables
-    @receipt_request = params[:ReceiptRequest]
+    @receipt_request = params[:ReceiptRequest].except(*REDUNDANT_REQUEST_PARAMS)
     @receipt_request.each do |key, value|
       instance_variable_set "@#{key.underscore}", value
+    # creates @receipt_number, @goods_type -- VALID_PARAMETERS
     end if @receipt_request.present?
   end
 end

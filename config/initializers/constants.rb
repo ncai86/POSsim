@@ -14,4 +14,5 @@ VALID_PARAMETERS = [
 #class = type of data
 #length = number of character expected -- optional
 
-#Test characters and optional length validation
+REDUNDANT_REQUEST_PARAMS = ["xmlns:xsi", "xmlns:xsd", "CorpID", "StoreID"]
+QUERY_STRING = "@receipt = Receipt.find_by_receipt_number(@receipt_number); (luxury_filter.present? ? @receipt.purchase_items.where(:is_luxury => luxury_filter) : @receipt.purchase_items) if @receipt"
