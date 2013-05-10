@@ -6,11 +6,9 @@ gem 'rails', '3.2.13'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'mysql2'
-gem 'faraday'
 gem 'rails_config'
 
 gem 'rabl', ">= 0.7.1"
-gem 'httpclient'
 gem 'faker', github: "roomorama/faker"
 
 
@@ -44,14 +42,10 @@ group :test do
   gem 'rspec-rails', '~> 2.13.0'
   gem 'rspec-instafail'
   gem 'spork', '~> 0.9.0'
-  gem 'factory_girl_rails', '~> 4.2.0'
-  gem 'webmock'
-  gem 'vcr', '2.2.5'
+  gem 'factory_girl_rails', '~> 4.2.0' 
   gem 'capybara', '~> 2.0'
   gem 'database_cleaner', github: "bmabey/database_cleaner"
   gem 'rack-test', '0.6.1'
-  gem 'capybara', '~> 2.0'
-  gem 'selenium-webdriver', '>= 2.25.0'
 end
 
 
