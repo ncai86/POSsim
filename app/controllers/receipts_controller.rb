@@ -14,6 +14,7 @@ class ReceiptsController < ApplicationController
   #end
 
   def get_receipt
+    response.headers["Content-Type"] = 'text/xml'
     set_parameter_variables
 
     #Validate number of parameters
@@ -73,14 +74,6 @@ class ReceiptsController < ApplicationController
       render 'error' and return
     end
 
-<<<<<<< HEAD
-    #Checks receipt presence using data
-    #Items Luxury or Standard
-
-    @purchase_items = luxury_filter.present? ? @receipt.purchase_items.where(:is_luxury => luxury_filter) : @receipt.purchase_items
-=======
-
->>>>>>> development
   end
 
   private
