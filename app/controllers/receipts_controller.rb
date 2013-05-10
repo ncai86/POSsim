@@ -38,24 +38,19 @@ class ReceiptsController < ApplicationController
     end
 
     render 'error' and return if @error.present?
-
-      #Set Receipt Length according to template selected
-    #@receipt_length = case Receipt.template
-    #  when 'lotte'
-    #    Settings.receipt_length.lotte
-    #  when 'testing'
-    #    Settings.receipt_length.test
-    #end
+    
+    ########################################################
+    ##Old Checks statically checking parameters, Same as Line 29-38
+    ##Checks for Presence of Mandatory data for query
+    ##receipt_number = params[:ReceiptRequest][:ReceiptNumber] rescue nil
+    ##goods_type = params[:ReceiptRequest][:GoodsType] rescue nil
+    ##if (receipt_number == nil || goods_type == nil) || (receipt_number.class != String || goods_type.class != Fixnum) || (receipt_number.try(:length) != @receipt_length)
+    ##  @error = "System Error: [return code]"
+    ##  render 'error' and return
+    ##end
+    ########################################################
 
     #checking if GoodsType is luxury or standard
-    #Checks for Presence of Mandatory data for query
-    #receipt_number = params[:ReceiptRequest][:ReceiptNumber] rescue nil
-    #goods_type = params[:ReceiptRequest][:GoodsType] rescue nil
-    #if (receipt_number == nil || goods_type == nil) || (receipt_number.class != String || goods_type.class != Fixnum) || (receipt_number.try(:length) != @receipt_length)
-    #  @error = "System Error: [return code]"
-    #  render 'error' and return
-    #end
-
     #initialize luxury_filter
     luxury_filter = nil
     if @goods_type.present?
