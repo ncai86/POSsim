@@ -9,15 +9,15 @@ class Receipt < ActiveRecord::Base
   end
 
 #  instance methods
-  def create_items(item_count)
+  def create_items(item_count, rate, luxury)
     item_count.times do
       self.purchase_items.create(
           good_description: Faker::Lorem.word,
           detailed_description: Faker::Lorem.sentence,
           quantity: Random.rand(0..9),
-          gross_amount: Random.rand(1000..10000),
-          vat_rate: Random.rand(1.00..10.00).round(2),
-          is_luxury: Random.rand(0..1)
+          gross_amount: Random.rand(10000..50000),
+          vat_rate: rate,
+          is_luxury: luxury
       )
     end
   end
