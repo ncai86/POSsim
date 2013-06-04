@@ -91,7 +91,6 @@ GEM
     mysql2 (0.3.11-x86-mingw32)
     nokogiri (1.5.9)
     nokogiri (1.5.9-x86-mingw32)
-    pg (0.14.1-x86-mingw32)
     polyglot (0.3.3)
     quiet_assets (1.0.2)
       railties (>= 3.1, < 5.0)
@@ -178,7 +177,6 @@ DEPENDENCIES
   faker!
   jquery-rails
   mysql2
-  pg
   quiet_assets
   rabl (>= 0.7.1)
   rack-test (= 0.6.1)

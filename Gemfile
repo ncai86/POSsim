@@ -10,7 +10,7 @@ gem 'rails_config'
 
 gem 'rabl', ">= 0.7.1"
 gem 'faker', github: "roomorama/faker"
-
+gem 'mysql2'
 
 
 # Gems used only for assets and not required
@@ -32,7 +32,6 @@ group :assets do
 end
 
 group :development do
-  gem 'mysql2'
   gem 'debugger', '>= 1.3.1'
   gem 'wkhtmltopdf-binary'
   gem 'quiet_assets'
@@ -49,9 +48,9 @@ group :test do
   gem 'rack-test', '0.6.1'
 end
 
-group :production do
-  gem "pg"
-end
+# group :production do
+#   gem "pg"
+# end
 
 
 gem 'jquery-rails'
