@@ -5,7 +5,7 @@ gem 'rails', '3.2.13'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'mysql2'
+
 gem 'rails_config'
 
 gem 'rabl', ">= 0.7.1"
@@ -32,6 +32,7 @@ group :assets do
 end
 
 group :development do
+  gem 'mysql2'
   gem 'debugger', '>= 1.3.1'
   gem 'wkhtmltopdf-binary'
   gem 'quiet_assets'
@@ -46,6 +47,10 @@ group :test do
   gem 'capybara', '~> 2.0'
   gem 'database_cleaner', github: "bmabey/database_cleaner"
   gem 'rack-test', '0.6.1'
+end
+
+group :production do
+  gem "pg"
 end
 
 
