@@ -1,5 +1,3 @@
-MERCHANTS = []
-
 #Enter in comma seperated hashes, indicating parameter name expected,
 # class/data type of parameter expected and
 # length(characters) of parameter expected
@@ -28,4 +26,8 @@ RESPONSE_NODES = ['GoodDescription',
 				  'IsLuxury']
 
 # Query assigning the array of purchase_items -- @purchase_items 
-QUERY_STRING = "@receipt = Receipt.find_by_receipt_number(@receipt_number); (luxury_filter.present? ? @receipt.purchase_items.where(:is_luxury => luxury_filter) : @receipt.purchase_items) if @receipt"
+QUERY_STRING = "@receipt = Receipt.find_by_receipt_number(@receipt_number);
+ (luxury_filter.present? ? @receipt.purchase_items.where(:is_luxury => luxury_filter)
+  : @receipt.purchase_items) if @receipt"
+
+
